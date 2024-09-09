@@ -24,3 +24,16 @@ function findTopAndBottomPerformers(data){
     const bottomPerformer = data.reduce((bottom, salesperson) => calculateAverageSales(bottom.sales) <= calculateAverageSales(salesperson.sales) ? bottom : salesperson  ,data[0]);
     return {topPerformer, bottomPerformer};
     }
+
+    //Task 4- Combine Functions to Generate a Performance Report
+
+function generatePerformanceReport(data){
+    const report = data.map((salesperson) => ({
+        name: salesperson.name, 
+        averageSales: calculateAverageSales(salesperson.sales), 
+        rating: determinePerformanceRating(calculateAverageSales(salesperson.sales)),
+    }));
+    const topPerformer = findTopAndBottomPerformers(data).topPerformer.name;
+    const bottomPerformer = findTopAndBottomPerformers(data).bottomPerformer;
+    return {report, topPerformer, bottomPerformer};
+};
