@@ -16,6 +16,11 @@ function determinePerformanceRating (averageSales){
 // This function uses a series of if else statements to check in what bracket does the average 
 // sales for the company fits in and return a string with its "grade".
 
-// I really tried to complete the 5 tasks of the challenge but I couldn't finish
-//tasks 3, 4, and 5 in a way that I could run them succesfully, so I prefered to
-//submit only the parts I could execute.
+//Task 3-Create a Function to Identify Top and Bottom Performers
+
+function findTopAndBottomPerformers(data){
+    if (data.length === 0 ) return {topPerformer: null, bottomPerformer: null};
+    const topPerformer = data.reduce((top, salesperson) => calculateAverageSales(top.sales) >= calculateAverageSales(salesperson.sales) ? top : salesperson  ,data[0]);
+    const bottomPerformer = data.reduce((bottom, salesperson) => calculateAverageSales(bottom.sales) <= calculateAverageSales(salesperson.sales) ? bottom : salesperson  ,data[0]);
+    return {topPerformer, bottomPerformer};
+    }
